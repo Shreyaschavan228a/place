@@ -1,4 +1,9 @@
-const ColorPicker = (props) => {
+interface propType {
+    curColor : string,
+    setColor : React.Dispatch<React.SetStateAction<string>>
+}
+
+const ColorPicker = (props : propType) => {
     const {curColor, setColor} = props;
     const pxlColors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'];
 

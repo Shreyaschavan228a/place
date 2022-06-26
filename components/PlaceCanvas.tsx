@@ -1,12 +1,16 @@
 import canvasHelper from "../lib/canvasHelper";
 import { useRef, useEffect } from "react";
 
-const PlaceCanvas = (props) => {
+interface propType {
+    curColor : string,
+}
+
+const PlaceCanvas = (props : propType) => {
     const {curColor} = props;
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        canvasHelper.initCanvas(canvasRef.current, 750, 750);
+        canvasHelper.initCanvas(canvasRef.current!, 750, 750);
     }, []);
     return (
         <div>
