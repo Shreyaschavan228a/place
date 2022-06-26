@@ -18,7 +18,7 @@ const CanvasHelper = () => {
             red : "#dc2626"
     }
 
-    const _getMousePos = (clickEvent : MouseEvent) : coordinate => {
+    const _getMousePos = (clickEvent : React.MouseEvent) : coordinate => {
         const rect = _canvasElem.getBoundingClientRect();
         return {
             x: clickEvent.clientX - rect.left,
@@ -39,7 +39,7 @@ const CanvasHelper = () => {
         }
    }
 
-   const colorBlock = (clickEvent : MouseEvent, colorName : string) => {
+   const colorBlock = (clickEvent : React.MouseEvent, colorName : string) => {
         let {x, y} = _getMousePos(clickEvent);
         [x,y] = [Math.floor(x/_pixelSize)*_pixelSize, Math.floor(y/_pixelSize)*_pixelSize];
         _canvasContext.fillStyle = _colors[colorName];
