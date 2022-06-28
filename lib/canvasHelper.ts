@@ -6,7 +6,7 @@ interface coordinate {
 const CanvasHelper = () => {
     const _pixelSize = 25;
     let _canvasContext : CanvasRenderingContext2D;
-    let _pixelData;
+    let _pixelData : string[][];
     let _canvasElem : HTMLCanvasElement;
     const _colors = {
             violet : "#7c3aed",
@@ -26,18 +26,24 @@ const CanvasHelper = () => {
         }
     }
 
-    const initCanvas = (canvasElemRef : HTMLCanvasElement, width : number, height : number) => {
+    const initCanvas = (canvasElemRef : HTMLCanvasElement, width : number, height : number, fetchedData) => {
         _canvasContext = canvasElemRef.getContext("2d")!;
         _canvasContext.fillStyle = "#000";
         _canvasContext.fillRect(0, 0, width, height);
         _canvasElem = canvasElemRef;
-
+        
         _pixelData = new Array(height/_pixelSize);
         for(let i = 0; i < _pixelData.length; i++){
             let tmpArr = new Array(width/_pixelSize).fill(0);
             _pixelData[i] = tmpArr;
         }
-   }
+
+        fetchedData.forEach((pixelObj) => {
+            _canvasContext.fillStyle = _colors[pixelObj.color];
+            _canvasContext.fillRect(pixelObj.x*_pixelSize, pixelObj.y*_pixelSize, _pixelSize, _pixelSize);
+            _pixelData[pixelObj.y][pixelObj.x] = _colors[pixelObj.color];
+        });
+    }
 
    const colorBlock = (clickEvent : React.MouseEvent, colorName : string) => {
         let {x, y} = _getMousePos(clickEvent);
@@ -46,7 +52,7 @@ const CanvasHelper = () => {
         _canvasContext.fillRect(x, y, _pixelSize, _pixelSize);
 
         _pixelData[x/_pixelSize][y/_pixelSize] = colorName;
-   }
+    }
 
    return {initCanvas, colorBlock};
 }
