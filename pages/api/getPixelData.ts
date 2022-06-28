@@ -3,7 +3,7 @@ import {
     NextApiRequest,
 } from 'next/dist/shared/lib/utils';
 import {FirebaseApp, initializeApp} from 'firebase/app';
-import {Firestore, getFirestore, collection, getDocs, QueryDocumentSnapshot, DocumentData} from 'firebase/firestore';
+import {Firestore, getFirestore, collection, getDocs, QueryDocumentSnapshot, DocumentData, QuerySnapshot} from 'firebase/firestore';
 
 
 
@@ -21,19 +21,13 @@ const app: FirebaseApp = initializeApp(firebaseConfig);
 const db: Firestore = getFirestore();
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    let docObjectArray : DocumentData[];
-    getDocs(collection(db, 'pixelData')).then((querySnapshot) => {
-        const d : QueryDocumentSnapshot[] = querySnapshot.docs; 
-        return d;
-    })
-    .then((docArray) => {
-        docObjectArray = Array.from(docArray).map((doc)=>{
-            return doc.data();
-        });
-    })
-    .finally(()=>{
-        res.status(200).json(docObjectArray);
+    const docQuerySnapshot : QuerySnapshot = await getDocs(collection(db, 'pixelData'));
+    const documentSnapshotData : QueryDocumentSnapshot[] = docQuerySnapshot.docs;
+    const documentObjectArray : DocumentData[]= Array.from(documentSnapshotData).map((doc) => {
+        return doc.data();
     });
+
+    return res.status(200).json(documentObjectArray);
 };
 
 export default handler;
