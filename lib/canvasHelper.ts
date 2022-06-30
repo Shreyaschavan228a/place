@@ -15,7 +15,9 @@ const CanvasHelper = () => {
             green : "#16a34a",
             yellow : "#ca8a04",
             orange : "#ea580c",
-            red : "#dc2626"
+            red : "#dc2626",
+            black : "#000000",
+            white : "#ffffff"
     }
 
     const _getMousePos = (clickEvent : React.MouseEvent) : coordinate => {
