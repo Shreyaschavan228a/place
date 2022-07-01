@@ -50,9 +50,15 @@ const CanvasHelper = () => {
             let tmpArr = new Array(width/_pixelSize).fill('black');
             _pixelData[i] = tmpArr;
         }
-
-
     }
+
+
+    const getPixelCoordinates = (e : React.MouseEvent) : coordinate => {
+        let {x, y} = _getMousePos(e);
+        [x,y] = [Math.floor(x/_pixelSize)*_pixelSize, Math.floor(y/_pixelSize)*_pixelSize];
+        return {x: x/_pixelSize, y: y/_pixelSize};
+    }
+
 
     const colorBlock = (clickEvent : React.MouseEvent, colorName : string) => {
         let {x, y} = _getMousePos(clickEvent);
@@ -63,7 +69,7 @@ const CanvasHelper = () => {
         _pixelData[x/_pixelSize][y/_pixelSize] = colorName;
     }
 
-    return {initCanvas, colorBlock, drawNewCanvas};
+    return {initCanvas, colorBlock, drawNewCanvas, getPixelCoordinates};
 }
 
 const canvasHelper = CanvasHelper();
