@@ -30,8 +30,8 @@ const CanvasHelper = () => {
 
     const drawNewCanvas = (fetchedData : string[]) => {
         fetchedData.forEach((pixelObj, index) => {
-        //index = 30*x+y
-            const [x, y] = [Math.floor(index/30), index%30];
+        //index = 30*y+x
+            const [y, x] = [Math.floor(index/30), index%30];
             if(pixelObj !== _pixelData[y][x]){
                 _canvasContext.fillStyle = _colors[pixelObj];
                 _canvasContext.fillRect(x*_pixelSize, y*_pixelSize, _pixelSize, _pixelSize);
