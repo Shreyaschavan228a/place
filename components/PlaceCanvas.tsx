@@ -24,11 +24,6 @@ const PlaceCanvas = (props : propType) => {
                 'Content-Type': 'application/json'
             },
             body : JSON.stringify({x, y, curColor}),
-        }).then((response) => {
-            return response.json();
-        })
-        .then((json) => {
-            console.log(json);
         });
     }
 

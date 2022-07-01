@@ -20,8 +20,9 @@ const handler = async (req : NextApiRequest, res : NextApiResponse) => {
     const updates = {};
     updates['/pixelData/' + index] = req.body.curColor;
     update(ref(db), updates).finally(() => {
-        res.end();
-    })
+        console.log(`color updated at pixel ${index}`);
+    });
+    return res.status(200).send(`color updated at pixel ${index}`);
 }
 
 export default handler;
