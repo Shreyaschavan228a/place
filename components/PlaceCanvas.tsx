@@ -11,12 +11,10 @@ const PlaceCanvas = (props : propType) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        firebaseHelper.getData(initializeCanvas);
+        canvasHelper.initCanvas(canvasRef.current!, 750, 750);
+        firebaseHelper.getData(canvasHelper.drawNewCanvas);
     }, []);
 
-    const  initializeCanvas = (pixelData) => {
-        canvasHelper.initCanvas(canvasRef.current!, 750, 750, pixelData);
-    }
 
     return (
         <div>
