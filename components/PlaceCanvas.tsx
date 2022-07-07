@@ -18,12 +18,13 @@ const PlaceCanvas = (props : propType) => {
     const handleClick = (e : React.MouseEvent) => {
         canvasHelper.colorBlock(e, curColor);
         const {x, y} = canvasHelper.getPixelCoordinates(e);
+        const username = localStorage.getItem("username") ?? 'anon';
         fetch('/api/addPixelData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify({x, y, curColor}),
+            body : JSON.stringify({x, y, curColor, username}),
         });
     }
 

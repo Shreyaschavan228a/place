@@ -13,12 +13,13 @@ const handler = async (req : NextApiRequest, res : NextApiResponse) => {
         req.body = {
             x: number,
             y: number,
-            curColor: string
+            curColor: string,
+            username: string
         }
     */
     const index = req.body.y * 30 + req.body.x;
     const updates = {};
-    updates['/pixelData/' + index] = req.body.curColor;
+    updates['/pixelData/' + index] = [req.body.curColor, req.body.username];
     update(ref(db), updates).finally(() => {
         console.log(`color updated at pixel ${index}`);
     });
