@@ -25,7 +25,7 @@ const LoginContainer = (props : {loginVisible: boolean, setLoginVisible: React.D
 
 
     return (
-        <div className="w-72 h-96 border-black border-2 rounded-lg flex flex-col p-6 bg-slate-600 text-white m-0 absolute right-4 top-20">
+        <div className="w-72 h-56 border-slate-900 border-2 rounded-lg flex flex-col p-6 bg-gray-900 text-white m-0 absolute right-4 top-20">
             {
                 isLoggedIn && (
                     <div className="flex flex-col justify-around items-center">
@@ -40,7 +40,7 @@ const LoginContainer = (props : {loginVisible: boolean, setLoginVisible: React.D
                         <h1 className="m-auto text-3xl ">Login</h1>
                         <label htmlFor="username">Username:</label>
                         <input name="username" className="border-black focus:outline-none w-auto text-black rounded-sm h-8 py-4 px-2" ref={usernameInput} />
-                        <button className="w-16 text-lg bg-slate-800 border-1 border-slate-800 m-auto my-2" onClick={loginUser}>Login</button>
+                        <button className="w-max text-lg bg-slate-800 border-1 border-slate-800 m-auto my-2 p-2" onClick={loginUser}>Login</button>
                     </div>
                 )
             }
